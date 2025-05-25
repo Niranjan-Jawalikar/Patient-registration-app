@@ -8,21 +8,21 @@ const DUMMY_PATIENTS = [
     age: 35,
     gender: "Female",
     diagnosis: "Fracture",
-    admission_date: "2024-06-15",
+    address: "123 Main St, Los Angeles, CA",
   },
   {
     name: "David Banner",
     age: 50,
     gender: "Male",
     diagnosis: "High Blood Pressure",
-    admission_date: "2024-06-18",
+    address: "456 Elm St, New York, NY",
   },
   {
     name: "Nina Patel",
     age: 29,
     gender: "Female",
     diagnosis: "Migraine",
-    admission_date: "2024-06-20",
+    address: "789 Oak St, Chicago, IL",
   },
 ];
 
@@ -34,7 +34,7 @@ export const createTable = async () => {
         age INTEGER NOT NULL,
         gender TEXT CHECK(gender IN ('Male', 'Female', 'Other')) NOT NULL,
         diagnosis TEXT,
-       admission_date DATE NOT NULL
+        address TEXT
       );
     `);
 };
@@ -46,7 +46,7 @@ const validatePatient = (patient) => {
     !patient.age ||
     !patient.gender ||
     !patient.diagnosis ||
-    !patient.admission_date
+    !patient.address
   ) {
     throw new Error("Invalid patient data");
   }
@@ -56,14 +56,14 @@ export const insertPatient = async (patient) => {
   validatePatient(patient);
 
   await db.query(
-    `INSERT INTO patients (name, age, gender, diagnosis, admission_date)
+    `INSERT INTO patients (name, age, gender, diagnosis, address)
          VALUES ($1, $2, $3, $4, $5)`,
     [
       patient.name,
       patient.age,
       patient.gender,
       patient.diagnosis,
-      patient.admission_date,
+      patient.address,
     ]
   );
 };

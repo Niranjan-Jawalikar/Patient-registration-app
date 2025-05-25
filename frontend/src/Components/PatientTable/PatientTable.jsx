@@ -22,14 +22,14 @@ const PatientTable = ({ patients, isLoading }) => {
       </thead>
       <tbody>
         {patients.map(
-          ({ id, name, age, gender, diagnosis, admission_date }) => (
+          ({ id, name, age, gender, diagnosis, address }) => (
             <tr key={id}>
               <td>{id}</td>
               <td>{name}</td>
               <td>{age}</td>
               <td>{gender}</td>
               <td>{diagnosis}</td>
-              <td>{admission_date?.toLocaleDateString()}</td>
+              <td>{address}</td>
             </tr>
           )
         )}

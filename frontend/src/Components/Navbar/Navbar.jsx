@@ -8,8 +8,8 @@ export default function Navbar() {
       <NavLink to="/" end>
         Patient List
       </NavLink>
-
       <NavLink to="/add">Add Patient</NavLink>
+      <NavLink to="/query">Query</NavLink>
     </nav>
   );
 }

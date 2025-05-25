@@ -23,7 +23,7 @@ const PatientForm = ({ setPatients }) => {
     age: "",
     gender: "",
     diagnosis: "",
-    admission_date: "",
+    address: "",
   });
 
   const handleChange = (e) => {
@@ -44,7 +44,7 @@ const PatientForm = ({ setPatients }) => {
         age: "",
         gender: "Male",
         diagnosis: "",
-        admission_date: "",
+        address: "",
       });
       const patients = await getPatients();
       console.log("Updated patients:", patients);
@@ -81,7 +81,9 @@ const PatientForm = ({ setPatients }) => {
         onChange={handleChange}
         required
       >
-        <option value="" disabled>Select Gender</option>
+        <option value="" disabled>
+          Select Gender
+        </option>
         <option value="Male">Male</option>
         <option value="Female">Female</option>
         <option value="Other">Other</option>
@@ -94,12 +96,11 @@ const PatientForm = ({ setPatients }) => {
         onChange={handleChange}
       />
       <input
-        type="date"
-        name="admission_date"
-        value={formData.admission_date}
+        type="text"
+        name="address"
+        placeholder="Address"
+        value={formData.address}
         onChange={handleChange}
-        required
-        max={today} // Prevent future dates
       />
       <button type="submit">Add Patient</button>
     </form>
