@@ -1,0 +1,33 @@
+.navbar {
+    position: sticky;        // or use `fixed` if you want it always visible
+    top: 0;
+    width: 100%;
+    z-index: 1000;           // ensures it stays above other content
+    padding: 12px 20px;
+    background-color: #282c34;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  
+    a {
+      color: #bbb;
+      font-weight: 500;
+      font-size: 16px;
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+  
+      &.active {
+        color: #61dafb;
+        background-color: #20232a;
+        font-weight: 700;
+      }
+  
+      &:hover {
+        background-color: #3a3f47;
+        color: #61dafb;
+      }
+    }
+  }
