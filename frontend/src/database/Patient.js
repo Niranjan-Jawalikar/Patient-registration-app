@@ -27,7 +27,6 @@ const DUMMY_PATIENTS = [
 ];
 
 export const createTable = async () => {
-  console.log("Creating patients table if it doesn't exist...");
   await db.exec(`
       CREATE TABLE IF NOT EXISTS patients (
         id SERIAL PRIMARY KEY,
@@ -38,7 +37,6 @@ export const createTable = async () => {
        admission_date DATE NOT NULL
       );
     `);
-    console.log("Patients table created or already exists.");
 };
 
 const validatePatient = (patient) => {
@@ -71,12 +69,12 @@ export const insertPatient = async (patient) => {
 };
 
 export const insertDummyPatients = async () => {
-    for (const patient of DUMMY_PATIENTS) {
-        await insertPatient(patient);
-    }
+  for (const patient of DUMMY_PATIENTS) {
+    await insertPatient(patient);
+  }
 };
 
 export const getPatients = async () => {
   const result = await db.query("SELECT * FROM patients");
   return result.rows;
-}
+};
