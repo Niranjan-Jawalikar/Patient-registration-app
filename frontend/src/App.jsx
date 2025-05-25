@@ -9,6 +9,8 @@ import Navbar from "./Components/Navbar/Navbar";
 import "./App.scss";
 import { getDbInstance } from "./database";
 import Query from "./Components/Query/Query";
+import { getPatients } from "./database/Patient";
+import { insertDummyPatients } from "./database/Patient";
 
 const App = () => {
   const dbRef = React.useRef(null);
@@ -19,9 +21,9 @@ const App = () => {
         console.log("Database instance initialized:", dbRef.current);
         await createTable();
       }
-      // const initialPatients = await getPatients();
-      // if(!initialPatients || initialPatients.length === 0) 
-      //   await insertDummyPatients(); // optional: remove in production
+      const initialPatients = await getPatients();
+      if(!initialPatients || initialPatients.length === 0) 
+        await insertDummyPatients(); // optional: remove in production
     }
 
     initDatabase().catch((error) => {

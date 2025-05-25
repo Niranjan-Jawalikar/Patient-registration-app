@@ -8,9 +8,8 @@ import { PGliteProvider } from "@electric-sql/pglite-react";
 const db = await getDbInstance();
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
     <PGliteProvider db={db}>
       <App />
     </PGliteProvider>
-  </StrictMode>
+
 );
