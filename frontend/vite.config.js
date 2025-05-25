@@ -6,5 +6,11 @@ export default defineConfig({
   plugins: [react()],
   optimizeDeps: {
     exclude: ['@electric-sql/pglite'],
+  },
+  worker: {
+    format: 'es',
+  },
+  build: {
+    target: 'esnext', // or chrome89, safari15, etc.
   }
 })
