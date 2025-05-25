@@ -1,18 +1,24 @@
 import React from "react";
 import "./PatientTable.scss";
+import { useLiveIncrementalQuery, useLiveQuery, usePGlite } from "@electric-sql/pglite-react";
 
-const PatientTable = ({ patients, isLoading }) => {
-  if (!patients || patients.length === 0) {
-    return <p>No patients found.</p>;
+const PatientTable = () => {
+  
+  const patients= useLiveQuery("select * from patients",[])
+  
+  if(!patients) {
+    return <p className="patient-message">Loading patients...</p>;
+  }
+  
+  if (!patients.rows || patients.rows.length === 0) {
+    return <p className="patient-message">No patients found.</p>;
   }
 
-  return isLoading ? (
-    <div>Loading...</div>
-  ) : (
+  return (
+    <>
     <table className="patient-table">
       <thead>
         <tr>
-          <th>ID</th>
           <th>Name</th>
           <th>Age</th>
           <th>Gender</th>
@@ -21,20 +27,18 @@ const PatientTable = ({ patients, isLoading }) => {
         </tr>
       </thead>
       <tbody>
-        {patients.map(
-          ({ id, name, age, gender, diagnosis, address }) => (
-            <tr key={id}>
-              <td>{id}</td>
-              <td>{name}</td>
-              <td>{age}</td>
-              <td>{gender}</td>
-              <td>{diagnosis}</td>
-              <td>{address}</td>
-            </tr>
-          )
-        )}
+        {patients.rows.map(({ id, name, age, gender, diagnosis, address }) => (
+          <tr key={id}>
+            <td>{name}</td>
+            <td>{age}</td>
+            <td>{gender}</td>
+            <td>{diagnosis}</td>
+            <td>{address}</td>
+          </tr>
+        ))}
       </tbody>
     </table>
+    </>
   );
 };
 

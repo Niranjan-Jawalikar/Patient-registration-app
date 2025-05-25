@@ -2,21 +2,10 @@ import React, { useEffect, useState } from "react";
 import { getPatients, insertPatient } from "../../database/Patient";
 import { useNavigate } from "react-router-dom";
 import "./PatientForm.scss";
+import { useLiveIncrementalQuery } from "@electric-sql/pglite-react";
 
-const PatientForm = ({ setPatients }) => {
-  const today = new Date().toISOString().split("T")[0];
+const PatientForm = () => {
   const navigate = useNavigate();
-  useEffect(() => {
-    const fetchPatients = async () => {
-      try {
-        const patients = await getPatients();
-        console.log("Fetched patients:", patients);
-      } catch (error) {
-        console.error("Error fetching patients:", error);
-      }
-    };
-    fetchPatients();
-  }, []);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -42,13 +31,10 @@ const PatientForm = ({ setPatients }) => {
       setFormData({
         name: "",
         age: "",
-        gender: "Male",
+        gender: "",
         diagnosis: "",
         address: "",
       });
-      const patients = await getPatients();
-      console.log("Updated patients:", patients);
-      setPatients(patients); // Update the patient list in the parent component
       navigate("/"); // Redirect to the patient list
     } catch (err) {
       console.error("Error inserting patient:", err);

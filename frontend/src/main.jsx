@@ -1,10 +1,16 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import App from "./App.jsx";
+import { getDbInstance } from "./database/index.js";
+import { PGliteProvider } from "@electric-sql/pglite-react";
 
-createRoot(document.getElementById('root')).render(
+const db = await getDbInstance();
+
+createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <App />
-  </StrictMode>,
-)
+    <PGliteProvider db={db}>
+      <App />
+    </PGliteProvider>
+  </StrictMode>
+);

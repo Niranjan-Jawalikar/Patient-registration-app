@@ -27,6 +27,7 @@ const DUMMY_PATIENTS = [
 ];
 
 export const createTable = async () => {
+    console.log("Creating patients table if it doesn't exist...");
   await db.exec(`
       CREATE TABLE IF NOT EXISTS patients (
         id SERIAL PRIMARY KEY,
@@ -37,6 +38,7 @@ export const createTable = async () => {
         address TEXT
       );
     `);
+    console.log("Patients table created successfully.");
 };
 
 const validatePatient = (patient) => {
