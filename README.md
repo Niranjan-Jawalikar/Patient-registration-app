@@ -1,9 +1,9 @@
-#Patient-registration-app
+# Patient-registration-app
 
 Steps to run the patients registration app:
 
-Clone the repo
-cd frontend
-run npm install
-run npm run dev
-The app is now running on the localhost
+1. Clone the repo
+2. cd frontend
+3. run npm install
+4. run npm run dev
+5. The app is now running on the localhost
